@@ -30,6 +30,7 @@ class AutoVivification(dict):
 
 
 
+
 def compute_revenue_product(revenue,expense):
     if expense>0:
         return revenue
@@ -95,7 +96,7 @@ def compute_all(projects):
 
 def print_result(projects):
     rows =[]
-    row = ['Name','Maconomy','Consolidate','Revenue','Revenue product',1,2,3,4,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
+    row = ['Name','Maconomy','Consolidate','Revenue','Revenue product',1,2,3,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
     rows.append(row)
     for project, data in projects.iteritems():
         row =[]
@@ -135,7 +136,7 @@ TotalCostColumn = 16
 
 
 firstMonth = 'Jan14'
-currentMonth = 'Sept14'
+currentMonth = 'Oct14'
 lastEntry = 'Over 2021'
 
 
@@ -161,7 +162,7 @@ line_in_project = 0
 projects = AutoVivification()
 
 
-with open('Project-review-Aug14.csv', 'rb') as csvfile:
+with open('oct14.csv', 'rb') as csvfile:
 # with open('Project-review-Aug14-2-entries.csv', 'rb') as csvfile:
     Excelreader = csv.reader(csvfile, delimiter=';', quotechar='|')
     for row in Excelreader:
