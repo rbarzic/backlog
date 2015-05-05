@@ -17,8 +17,7 @@ def string2i(my_str):
         return 0
 
 
-
-#http://stackoverflow.com/questions/651794/whats-the-best-way-to-initialize-a-dict-of-dicts-in-python
+# http://stackoverflow.com/questions/651794/whats-the-best-way-to-initialize-a-dict-of-dicts-in-python
 class AutoVivification(dict):
     """Implementation of perl's autovivification feature."""
     def __getitem__(self, item):
@@ -29,51 +28,49 @@ class AutoVivification(dict):
             return value
 
 
-
-
-def compute_revenue_product(revenue,expense):
-    if expense>0:
+def compute_revenue_product(revenue, expense):
+    if expense > 0:
         return revenue
     else:
         return revenue+expense*1.1
 
 
-def compute_backlog(project,project_data):
+def compute_backlog(project, project_data):
     print(">>>>>>>>>>>>>>>>>>>>>>")
-    print(">>>>>> " + project)    
+    print(">>>>>> " + project)
     print(">>>>>>>>>>>>>>>>>>>>>>")
-    
+
     pprint.pprint(project_data ['revenue product'])
     revenue_product = project_data ['revenue product']
     remaining_hours =  project_data['Remaining hours']
     print "Remaining hours : " + str(remaining_hours)
     if(remaining_hours ==0):
-        project_data['backlog  2014']        =    [0 for x in project_data['Hours 2014']]      
-        project_data['backlog  2015']        =    [0 for x in project_data['Hours 2015']]      
-        project_data['backlog  2016']        =    [0 for x in project_data['Hours 2016']]      
-        project_data['backlog  2017']        =    [0 for x in project_data['Hours 2017']]      
-        project_data['backlog  2018']        =    [0 for x in project_data['Hours 2018']]      
-        project_data['backlog  2019']        =    [0 for x in project_data['Hours 2019']]      
-        project_data['backlog  2020']        =    [0 for x in project_data['Hours 2020']]      
-        project_data['backlog  2021']        =    [0 for x in project_data['Hours 2021']]      
-        project_data['backlog  over_2021']   =    [0 for x in project_data['Hours over_2021']] 
-        
+        #project_data['backlog  2014']        =    [0 for x in project_data['Hours 2014']]
+        project_data['backlog  2015']        =    [0 for x in project_data['Hours 2015']]
+        project_data['backlog  2016']        =    [0 for x in project_data['Hours 2016']]
+        project_data['backlog  2017']        =    [0 for x in project_data['Hours 2017']]
+        project_data['backlog  2018']        =    [0 for x in project_data['Hours 2018']]
+        project_data['backlog  2019']        =    [0 for x in project_data['Hours 2019']]
+        project_data['backlog  2020']        =    [0 for x in project_data['Hours 2020']]
+        project_data['backlog  2021']        =    [0 for x in project_data['Hours 2021']]
+        project_data['backlog  over_2021']   =    [0 for x in project_data['Hours over_2021']]
+
     else:
-        project_data['backlog  2014']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2014']]      
-        project_data['backlog  2015']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2015']]      
-        project_data['backlog  2016']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2016']]      
-        project_data['backlog  2017']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2017']]      
-        project_data['backlog  2018']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2018']]      
-        project_data['backlog  2019']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2019']]      
-        project_data['backlog  2020']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2020']]      
-        project_data['backlog  2021']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2021']]      
-        project_data['backlog  over_2021']   =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours over_2021']] 
-        
+        #project_data['backlog  2014']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2014']]
+        project_data['backlog  2015']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2015']]
+        project_data['backlog  2016']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2016']]
+        project_data['backlog  2017']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2017']]
+        project_data['backlog  2018']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2018']]
+        project_data['backlog  2019']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2019']]
+        project_data['backlog  2020']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2020']]
+        project_data['backlog  2021']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2021']]
+        project_data['backlog  over_2021']   =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours over_2021']]
+
 
 
 def compute_sum_of_remaining_hours(project_data):
     s =0
-    s += sum(project_data['Hours 2014'])
+    #s += sum(project_data['Hours 2014'])
     s += sum(project_data['Hours 2015'])
     s += sum(project_data['Hours 2016'])
     s += sum(project_data['Hours 2017'])
@@ -83,11 +80,11 @@ def compute_sum_of_remaining_hours(project_data):
     s += sum(project_data['Hours 2021'])
     s += sum(project_data['Hours over_2021'])
     project_data['Remaining hours'] = s
-    
+
 def compute_all(projects):
     "Compute everything..."
     for project, data in projects.iteritems():
-        pprint.pprint 
+        pprint.pprint
         projects[project]['revenue product'] = compute_revenue_product(string2i(data['Revenue']),string2i(data['Expense']))
         compute_sum_of_remaining_hours(data)
         compute_backlog(project,data)
@@ -96,7 +93,7 @@ def compute_all(projects):
 
 def print_result(projects):
     rows =[]
-    row = ['Name','Maconomy','Consolidate','Revenue','Revenue product',1,2,3,1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
+    row = ['Name','Maconomy','Consolidate','Revenue','Revenue product','May','June','July','August','September','October','November','December',1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
     rows.append(row)
     for project, data in projects.iteritems():
         row =[]
@@ -105,8 +102,8 @@ def print_result(projects):
         row.append(data['Consolidate'])
         row.append(data['Revenue'])
         row.append(data['revenue product'])
-        
-        row.extend(data['backlog  2014'])
+
+        # row.extend(data['backlog  2014'])
         row.extend(data['backlog  2015'])
         row.extend(data['backlog  2016'])
         row.extend(data['backlog  2017'])
@@ -124,19 +121,19 @@ def print_result(projects):
 CommentsColumn =0
 StatusColumn = 2
 ProductColumn = 4
-ProjectNameColumn = 9
-DescriptionColumn = 10
-MaconomyIDColumn = 8
-ConsolidateColumn = 7
+ProjectNameColumn = 8
+DescriptionColumn = 9
+MaconomyIDColumn = 7
+ConsolidateColumn = 6
 
-RevenueColumn = 12
-TotalHourColumn = 13
-ExpenseColumn = 15
-TotalCostColumn = 16
+RevenueColumn = 11
+TotalHourColumn = 12
+ExpenseColumn = 14
+TotalCostColumn = 15
 
 
-firstMonth = 'Jan14'
-currentMonth = 'Oct14'
+firstMonth = 'Jan15'
+currentMonth = 'May15'
 lastEntry = 'Over 2021'
 
 
@@ -162,7 +159,7 @@ line_in_project = 0
 projects = AutoVivification()
 
 
-with open('oct14.csv', 'rb') as csvfile:
+with open('april15.csv', 'rb') as csvfile:
 # with open('Project-review-Aug14-2-entries.csv', 'rb') as csvfile:
     Excelreader = csv.reader(csvfile, delimiter=';', quotechar='|')
     for row in Excelreader:
@@ -184,8 +181,8 @@ with open('oct14.csv', 'rb') as csvfile:
             print "lastEntry_idx : " + str(lastEntry_idx)
 
 
-            y2014_idx =  firstMonth_idx
-            y2015_idx =  y2014_idx +12
+            y2015_idx =  firstMonth_idx
+            # y2015_idx =  y2014_idx +12
             y2016_idx =  y2015_idx +12
             y2017_idx =  y2016_idx +12
             y2018_idx =  y2017_idx +1
@@ -195,8 +192,8 @@ with open('oct14.csv', 'rb') as csvfile:
             over2021_idx = y2021_idx +1
 
             # jan = 0, dec =11
-            y2014_length = 12-(currentMonth_idx-firstMonth_idx)
-            y2015_length = 12
+            y2015_length = 12-(currentMonth_idx-firstMonth_idx)
+            #y2015_length = 12
             y2016_length = 12
             y2017_length = 1
             y2018_length = 1
@@ -207,7 +204,8 @@ with open('oct14.csv', 'rb') as csvfile:
 
 
 
-        if (description != '') and (product != '') and  (status == "Open"):
+        # if (description != '') and (product != '') and  (status == "Open"):
+        if (description != '')  and  (status == "Open"):
             print "Description : " + description
             line_in_project = line_in_project + 1
             if description == budgetDescriptionField:
@@ -218,9 +216,10 @@ with open('oct14.csv', 'rb') as csvfile:
                 maconomyID = row[MaconomyIDColumn].strip()
                 consolidate = row[ConsolidateColumn].strip()
 
-                hours_2014 = row[currentMonth_idx:(currentMonth_idx + y2014_length)]
-                print "y2014_length" + str(y2014_length)
-                hours_2015 = row[y2015_idx:(y2015_idx + y2015_length)]
+                hours_2015 = row[currentMonth_idx:(currentMonth_idx + y2015_length)]
+                print "y2015_length" + str(y2015_length)
+                print "HOURS_2015 " + str(len(hours_2015))
+                # hours_2015 = row[y2015_idx:(y2015_idx + y2015_length)]
                 hours_2016 = row[y2016_idx:(y2016_idx + y2016_length)]
                 hours_2017 = row[y2017_idx:(y2017_idx + y2017_length)]
                 hours_2018 = row[y2018_idx:(y2018_idx + y2018_length)]
@@ -252,7 +251,7 @@ with open('oct14.csv', 'rb') as csvfile:
 
 
 
-                projects[project]['Hours 2014'] = [string2i(x) for x in hours_2014]
+                # projects[project]['Hours 2014'] = [string2i(x) for x in hours_2014]
                 projects[project]['Hours 2015']    = [string2i(x) for x in hours_2015]
                 projects[project]['Hours 2016']    = [string2i(x) for x in hours_2016]
                 projects[project]['Hours 2017']    = [string2i(x) for x in hours_2017]

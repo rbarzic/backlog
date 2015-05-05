@@ -6,7 +6,7 @@ import pprint
 
 import locale
 
-FirstLine=6
+FirstLine=1
 MonthlyDepreciationColumn = 12
 AmountPostedColumn = 8
 ResultColumn = 16
