@@ -65,12 +65,42 @@ print sheets
 sheet1 = wb2[sheets[0]]
 print sheet1['C1'].value
 
+idx = dict()
+firstRowFound = False
 for row in sheet1.rows:
     if isTitleRow(row):
+        firstRowFound = True
         print "First Row !"
-        indexes = getColumnIndex(row)
-        pp.pprint(indexes)
-    for cell in row:
-        pass
+        idx = getColumnIndex(row)
+        pp.pprint(idx)
+        y2015_idx = idx['first_month']
+        y2016_idx = y2015_idx + 12
+        y2017_idx = y2016_idx + 12
+        y2018_idx = y2017_idx + 1
+        y2019_idx = y2018_idx + 1
+        y2020_idx = y2019_idx + 1
+        y2021_idx = y2020_idx + 1
+        over2021_idx = y2021_idx + 1
+
+        y2015_length = 12-(idx['current_month']-idx['first_month'])
+        y2016_length = 12
+        y2017_length = 1
+        y2018_length = 1
+        y2019_length = 1
+        y2020_length = 1
+        y2021_length = 1
+        over2021_length = 1
+    else:
+        if firstRowFound:            
+            row_i = [(cell.value).encode('utf-8')  for cell in row if cell is not None]
+
+            product = row_i[idx['product']].strip()
+            status = row_i[idx['status']].strip()
+            description = row_i[idx['description']].strip()
+
+    
+
+    #for cell in row:
+    #    pass
         #print(cell.value)
 #print sheet1.cell('A','1')
