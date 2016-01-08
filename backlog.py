@@ -84,7 +84,7 @@ def compute_sum_of_remaining_hours(project_data):
 def compute_all(projects):
     "Compute everything..."
     for project, data in projects.iteritems():
-        
+
         projects[project]['revenue product'] = compute_revenue_product(string2i(data['Revenue']),string2i(data['Expense']))
         compute_sum_of_remaining_hours(data)
         compute_backlog(project,data)
@@ -93,7 +93,7 @@ def compute_all(projects):
 
 def print_result(projects):
     rows =[]
-    row = ['Name','Maconomy','Consolidate','Revenue','Revenue product','October','November','December',1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
+    row = ['Name','Maconomy','Consolidate','Revenue','Revenue product','December',1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
     rows.append(row)
     for project, data in projects.iteritems():
         row =[]
@@ -112,7 +112,7 @@ def print_result(projects):
         print  " data['backlog  2020'] " + str(len(data['backlog  2020']))
         print  " data['backlog  2021'] " + str(len(data['backlog  2021']))
         print  " data['backlog  over_2021'] " + str(len(data['backlog  over_2021']))
-        
+
         row.extend(data['backlog  2015'])
         row.extend(data['backlog  2016'])
         row.extend(data['backlog  2017'])
@@ -142,7 +142,7 @@ TotalCostColumn = 15
 
 
 firstMonth = 'Jan15'
-currentMonth = 'Oct15'
+currentMonth = 'Dec15'
 lastEntry = 'Over 2021'
 
 
@@ -168,7 +168,7 @@ line_in_project = 0
 projects = AutoVivification()
 
 
-with open('sept2015_2.csv', 'rb') as csvfile:
+with open('november2015_1.csv', 'rb') as csvfile:
 # with open('Project-review-Aug14-2-entries.csv', 'rb') as csvfile:
     Excelreader = csv.reader(csvfile, delimiter=';', quotechar='|')
     for row in Excelreader:

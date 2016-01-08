@@ -26,7 +26,7 @@ def string2i(my_str):
 
 
 result = []
-with open('Depreciations_from_March_2015.csv', 'rb') as csvfile:
+with open('Depreciations_from_oct15.csv', 'rb') as csvfile:
     Excelreader = csv.reader(csvfile, delimiter=';', quotechar='|')
     line=0
     
@@ -60,7 +60,7 @@ with open('Depreciations_from_March_2015.csv', 'rb') as csvfile:
 
 pprint.pprint(result)
 
-with open('result_depreciation_mars2015.csv', 'wb') as f:
+with open('result_depreciation_oct2015.csv', 'wb') as f:
     writer = csv.writer(f, delimiter=';')
     writer.writerows(result)
 
