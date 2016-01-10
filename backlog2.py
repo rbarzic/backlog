@@ -52,6 +52,8 @@ def get_args():
     parser.add_argument('--currentmonth', action='store', dest='currentmonth',
                         help='First month to consider (ex : Dec15)')
 
+    parser.add_argument('--year2016', action='store_true', default=False)
+
     parser.add_argument('--version', action='version', version='%(prog)s 0.1')
 
     return parser.parse_args()
@@ -184,9 +186,11 @@ def main():
     args = get_args();
     csv_file = args.csv
     currentMonth = args.currentmonth
+    year2016 = args.year2016
+
     currentMonth_without_year = filter(lambda c: not c.isdigit(), currentMonth)
     list_of_remaining_months = months[months_abbrv.index(currentMonth_without_year):]
-    header = ['Name','Maconomy','Consolidate','Revenue','Revenue product'] + list_of_remaining_months + [1,2,3,4,5,6,7,8,9,10,11,12,2017,2018,2019,2020,2021,'over2021']
+    header = ['Name','Maconomy','Consolidate','Revenue','Revenue product'] + list_of_remaining_months + [1,2,3,4,5,6,7,8,9,10,11,12,2018,2019,2020,2021,'over2021']
     print ">>currentMonth_without_year<<" + currentMonth_without_year
     print ">>Remaining months<<" + str(list_of_remaining_months)
 
@@ -259,7 +263,11 @@ def main():
                 # y2015_idx =  y2014_idx +12
                 y2016_idx =  y2015_idx +12
                 y2017_idx =  y2016_idx +12
-                y2018_idx =  y2017_idx +1
+                if year2016:
+                    y2018_idx =  y2017_idx +12
+                else:
+                    y2018_idx =  y2017_idx +1
+
                 y2019_idx =  y2018_idx +1
                 y2020_idx =  y2019_idx +1
                 y2021_idx =  y2020_idx +1
@@ -269,7 +277,10 @@ def main():
                 y2015_length = 12-(currentMonth_idx-firstMonth_idx)
                 #y2015_length = 12
                 y2016_length = 12
-                y2017_length = 1
+                if year2016:
+                    y2017_length = 12
+                else:
+                    y2017_length = 1
                 y2018_length = 1
                 y2019_length = 1
                 y2020_length = 1
