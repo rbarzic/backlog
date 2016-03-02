@@ -100,7 +100,7 @@ def compute_backlog(project, project_data):
     print "Remaining hours : " + str(remaining_hours)
     if(remaining_hours ==0):
         #project_data['backlog  2014']        =    [0 for x in project_data['Hours 2014']]
-        project_data['backlog  2015']        =    [0 for x in project_data['Hours 2015']]
+        #project_data['backlog  2015']        =    [0 for x in project_data['Hours 2015']]
         project_data['backlog  2016']        =    [0 for x in project_data['Hours 2016']]
         project_data['backlog  2017']        =    [0 for x in project_data['Hours 2017']]
         project_data['backlog  2018']        =    [0 for x in project_data['Hours 2018']]
@@ -111,7 +111,7 @@ def compute_backlog(project, project_data):
 
     else:
         #project_data['backlog  2014']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2014']]
-        project_data['backlog  2015']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2015']]
+        #project_data['backlog  2015']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2015']]
         project_data['backlog  2016']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2016']]
         project_data['backlog  2017']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2017']]
         project_data['backlog  2018']        =    [((revenue_product* x)/ remaining_hours) for x in project_data['Hours 2018']]
@@ -125,7 +125,7 @@ def compute_backlog(project, project_data):
 def compute_sum_of_remaining_hours(project_data):
     s =0
     #s += sum(project_data['Hours 2014'])
-    s += sum(project_data['Hours 2015'])
+    #s += sum(project_data['Hours 2015'])
     s += sum(project_data['Hours 2016'])
     s += sum(project_data['Hours 2017'])
     s += sum(project_data['Hours 2018'])
@@ -159,7 +159,7 @@ def print_result(projects,header):
         row.append(data['revenue product'])
 
         # row.extend(data['backlog  2014'])
-        print  " data['backlog  2015'] " + str(len(data['backlog  2015']))
+        #print  " data['backlog  2015'] " + str(len(data['backlog  2015']))
         print  " data['backlog  2016'] " + str(len(data['backlog  2016']))
         print  " data['backlog  2017'] " + str(len(data['backlog  2017']))
         print  " data['backlog  2018'] " + str(len(data['backlog  2018']))
@@ -168,7 +168,7 @@ def print_result(projects,header):
         print  " data['backlog  2021'] " + str(len(data['backlog  2021']))
         print  " data['backlog  over_2021'] " + str(len(data['backlog  over_2021']))
 
-        row.extend(data['backlog  2015'])
+        #row.extend(data['backlog  2015'])
         row.extend(data['backlog  2016'])
         row.extend(data['backlog  2017'])
         row.extend(data['backlog  2018'])
@@ -200,18 +200,18 @@ def main():
     StatusColumn = 2
     ProductColumn = 4
     ProjectNameColumn = 8
-    DescriptionColumn = 9
+    DescriptionColumn = 10
     MaconomyIDColumn = 7
     ConsolidateColumn = 6
 
-    RevenueColumn = 11
-    TotalHourColumn = 12
-    ExpenseColumn = 14
-    TotalCostColumn = 15
+    RevenueColumn = 12
+    TotalHourColumn = 13
+    ExpenseColumn = 15
+    TotalCostColumn = 16
 
 
-    firstMonth = 'Jan15'
-    # currentMonth = 'Dec15'
+    firstMonth = 'Jan16'
+    # currentMonth = 'Dec15' Current Month is now a argument
     lastEntry = 'Over 2021'
 
 
@@ -259,13 +259,18 @@ def main():
                 print "lastEntry_idx : " + str(lastEntry_idx)
 
 
-                y2015_idx =  firstMonth_idx
-                # y2015_idx =  y2014_idx +12
-                y2016_idx =  y2015_idx +12
-                y2017_idx =  y2016_idx +12
+
                 if year2016:
+                    y2016_idx =  firstMonth_idx
+                    # y2015_idx =  y2014_idx +12
+                    #y2016_idx =  y2015_idx +12
+                    y2017_idx =  y2016_idx +12
                     y2018_idx =  y2017_idx +12
                 else:
+                    y2015_idx =  firstMonth_idx
+                    # y2015_idx =  y2014_idx +12
+                    y2016_idx =  y2015_idx +12
+                    y2017_idx =  y2016_idx +12
                     y2018_idx =  y2017_idx +1
 
                 y2019_idx =  y2018_idx +1
@@ -274,12 +279,14 @@ def main():
                 over2021_idx = y2021_idx +1
 
                 # jan = 0, dec =11
-                y2015_length = 12-(currentMonth_idx-firstMonth_idx)
-                #y2015_length = 12
-                y2016_length = 12
+
                 if year2016:
+                    y2016_length = 12-(currentMonth_idx-firstMonth_idx)
                     y2017_length = 12
                 else:
+
+                    #y2015_length = 12
+                    y2016_length = 12
                     y2017_length = 1
                 y2018_length = 1
                 y2019_length = 1
@@ -300,12 +307,14 @@ def main():
                     project  = row[ProjectNameColumn].strip()
                     maconomyID = row[MaconomyIDColumn].strip()
                     consolidate = row[ConsolidateColumn].strip()
-
-                    hours_2015 = row[currentMonth_idx:(currentMonth_idx + y2015_length)]
-                    print "y2015_length" + str(y2015_length)
-                    print "HOURS_2015 " + str(len(hours_2015))
+                    if year2016:
+                        hours_2016 = row[currentMonth_idx:(currentMonth_idx + y2016_length)]
+                    else:
+                        hours_2015 = row[currentMonth_idx:(currentMonth_idx + y2015_length)]
+                        hours_2016 = row[y2016_idx:(y2016_idx + y2016_length)]
+                    print "y2016_length" + str(y2016_length)
+                    print "HOURS_2016 " + str(len(hours_2016))
                     # hours_2015 = row[y2015_idx:(y2015_idx + y2015_length)]
-                    hours_2016 = row[y2016_idx:(y2016_idx + y2016_length)]
                     hours_2017 = row[y2017_idx:(y2017_idx + y2017_length)]
                     hours_2018 = row[y2018_idx:(y2018_idx + y2018_length)]
                     hours_2019 = row[y2019_idx:(y2019_idx + y2019_length)]
@@ -337,7 +346,7 @@ def main():
 
 
                     # projects[project]['Hours 2014'] = [string2i(x) for x in hours_2014]
-                    projects[project]['Hours 2015']    = [string2i(x) for x in hours_2015]
+                    #projects[project]['Hours 2015']    = [string2i(x) for x in hours_2015]
                     projects[project]['Hours 2016']    = [string2i(x) for x in hours_2016]
                     projects[project]['Hours 2017']    = [string2i(x) for x in hours_2017]
                     projects[project]['Hours 2018']    = [string2i(x) for x in hours_2018]
