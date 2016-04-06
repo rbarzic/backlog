@@ -200,14 +200,14 @@ def main():
     StatusColumn = 2
     ProductColumn = 4
     ProjectNameColumn = 8
-    DescriptionColumn = 10
+    DescriptionColumn = 9
     MaconomyIDColumn = 7
     ConsolidateColumn = 6
 
-    RevenueColumn = 12
-    TotalHourColumn = 13
-    ExpenseColumn = 15
-    TotalCostColumn = 16
+    RevenueColumn = 11
+    TotalHourColumn = 12
+    ExpenseColumn = 14
+    TotalCostColumn = 15
 
 
     firstMonth = 'Jan16'
