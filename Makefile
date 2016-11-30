@@ -22,3 +22,7 @@ backlog_august2016:
 
 backlog_september2016:
 	python ./backlog2.py --csv=September2.csv --currentmonth=Oct16 --year2016
+
+
+backlog_october2016:
+	python ./backlog2.py --csv=October2016.csv --currentmonth=Nov16 --year2016
